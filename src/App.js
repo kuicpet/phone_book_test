@@ -1,23 +1,20 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import PhoneBookForm from './components/PhoneBookForm';
+import PhoneList from './components/PhoneList';
 
-function App() {
+function App(props) {
+  const [users, setUsers] = useState([])
+
+  const addToPhoneBook = (user) => {
+    setUsers([...users, user])
+  }
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <PhoneBookForm addToPhoneBook={addToPhoneBook} />
+      <PhoneList users={users} />
     </div>
   );
 }
